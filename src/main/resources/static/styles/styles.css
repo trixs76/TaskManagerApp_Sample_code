@@ -22,20 +22,20 @@ body {
     flex-direction: column;
     box-sizing: border-box;
     margin: 0;
-    padding: 0;  /* Už žiadny padding na body */
+    padding: 0;  /* No padding for body */
     min-height: 100vh;
 }
 
-/* header ostáva fixed, ako máš */
+/* header fixed */
 body > header {
     height: 100px;
     width: 100%;
-    background: #1a5b5c;
+    background: #263973;  /* color for top menu */
     color: white;
     display: flex;
     justify-content: space-evenly;
     position: fixed;
-    z-index: 1;
+    z-index: 1030;
     top: 0;
 }
 
@@ -89,7 +89,7 @@ nav ul a:hover,
 }
 
 article {
-    padding-top: 120px;  /* miesto pre fixed header + medzera */
+    padding-top: 120px;  /* space for header and article */
     width: 80%;
     max-width: 1200px;
     margin: 20px auto;
@@ -102,7 +102,7 @@ article {
 /* mobile friendly content */
 @media (max-width: 768px) {
     article {
-        padding-top: 100px; /* trochu menej na mobile, ak chceš */
+        padding-top: 100px;
         padding-left: 15px;
         padding-right: 15px;
     }
@@ -115,7 +115,7 @@ article h4,
 article h5,
 article h6 {
     padding: 10px 0;
-    color: #1a5b5c;             /* color h1*/
+    color: #263973;             /* color h1*/
 
 }
 
@@ -124,7 +124,7 @@ article h1 {
     font-size: 2.3em;
     font-weight: bold;
     text-transform: uppercase;
-    border-bottom: 4px solid #1a5b5c;
+    border-bottom: 4px solid #263973;
 }
 
 article h2 {
@@ -156,13 +156,13 @@ article section a {
 }
 
 .avatar {
-    float: none;           /* odstráni float */
-    padding-left: 0;       /* ak chceš, môže ostať ak sa hodí na desktop */
-    max-width: 100%;       /* nikdy nepresiahne rodiča */
-    width: 100%;           /* škáluje sa s rodičom */
-    height: auto;          /* zachová pomer strán */
-    display: block;        /* pekne sa zarovná */
-    margin-bottom: 1rem;   /* odsadí od textu */
+    float: none;
+    padding-left: 0;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 1rem;
 }
 
 .cleaner {

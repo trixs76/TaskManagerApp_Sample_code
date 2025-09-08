@@ -1,4 +1,7 @@
 package com.trixs.taskmanager.data.entities;
 
-public enum TaskCategory {
+public enum CategoryStatus {
+    SCHOOL,
+    WORK,
+    DOCTOR
 }

@@ -1,10 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout.html :: head}">
+  <title>Search Persons</title>
 </head>
 <body>
-$END$
+<header th:replace="~{fragments/layout.html :: header}"></header>
+
+<article>
+  <div class="container mt-4">
+    <h1>Search Tasks</h1>
+    <p></p>
+    <!-- Search menu -->
+    <form th:action="@{/tasks/search}" method="get" class="row p-2 mt-2 mb-5 bg-white rounded shadow">
+      <div class="col-md-4">
+        <input type="text" class="form-control" name="title" placeholder="Title"
+               th:value="${param.title}">
+      </div>
+      <div class="col-md-4">
+        <input type="date" class="form-control" name="dueDate" placeholder="Date"
+               th:value="${param.dueDate}">
+      </div>
+      <div class="col-md-4">
+        <button type="submit" class="btn btn-primary w-100">Search</button>
+      </div>
+    </form>
+    <p></p>
+    <!-- Search results -->
+    <div th:if="${tasks != null}">
+      <h2 th:if="${tasks.size() > 0}">Results</h2>
+      <ul class="list-group">
+        <li th:each="task : ${tasks}" class="list-group-item">
+          <h3 th:text="${task.title}">Title</h3>
+          <p>
+            <strong>Date:</strong> <span th:text="${task.dueDate}">2000-01-01</span>
+            <strong>Description:</strong> <span th:text="${task.description}">Description</span><br>
+            <strong>Category:</strong> <span th:text="${task.category}">Category</span>
+            <strong>Status:</strong>
+            <span th:text="${task.status}"
+                  th:classappend="${task.status == T(com.trixs.taskmanager.data.entities.TaskStatus).COMPLETED} ? 'badge bg-success'
+                          : (${task.status == T(com.trixs.taskmanager.data.entities.TaskStatus).IN_PROGRESS} ? 'badge bg-warning text-dark'
+                          : 'badge bg-secondary')">
+                      Status
+                    </span>
+          </p>
+          <p>
+            <a th:href="@{/tasks/detail/{id}(id=${task.taskId})}" class="btn btn-sm btn-info">Detail</a>
+            <a th:href="@{/tasks/edit/{id}(id=${task.taskId})}" class="btn btn-sm btn-warning m-1">Edit</a>
+          </p>
+        </li>
+      </ul>
+      <p th:if="${tasks.size() == 0}" class="text-muted">No tasks found.</p>
+    </div>
+  </div>
+</article>
+
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
 </body>
 </html>

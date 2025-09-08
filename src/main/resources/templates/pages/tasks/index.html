@@ -1,10 +1,147 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout.html :: head}"></head>
+
 <body>
-$END$
+<header th:replace="~{fragments/layout.html :: header}"></header>
+<!-- Status messages -->
+<div class="py-2 flash-message message-error" th:text="${error}" th:if="${error}"></div>
+
+<article>
+  <div class="container">
+    <div id="centered">
+      <section>
+        <header>
+          <h1>List of tasks</h1>
+        </header>
+        <!-- Create task -->
+        <p style="text-align: center;">
+          <a class="btn btn-mm btn-warning mb-3 mt-3" th:href="@{/tasks/create}">Create new task</a>
+        </p>
+        <!-- Search menu -->
+        <form th:action="@{/tasks/search}" method="get" class="row p-2 mt-2 mb-5 bg-white rounded shadow">
+          <div class="col-md-4">
+            <input type="text" class="form-control" name="title" placeholder="Title"
+                   th:value="${param.title}">
+          </div>
+          <div class="col-md-4">
+            <input type="date" class="form-control" name="dueDate" placeholder="Date"
+                   th:value="${param.dueDate}">
+          </div>
+          <div class="col-md-4">
+            <button type="submit" class="btn btn-primary w-100">Search</button>
+          </div>
+        </form>
+
+        <!-- Toggle sorting for task
+        <p style="text-align: center;">
+          <a class="btn btn-mm btn-primary" th:href="@{/tasks(pageNo=${currentPage}, sortField='lastName', sortDir=${reverseSortDir})}">
+            Sort by Person's Last Name
+
+            <span th:text="${sortField == 'lastName' ? (sortDir == 'asc' ? '▲' : '▼') : ''}"></span>
+          </a>
+        </p>-->
+
+        <!-- Toogle sorting by status  -->
+        <div class="d-flex justify-content-center gap-3">
+          <a th:href="@{/tasks(status='COMPLETED')}" class="btn btn-success">
+            Show Completed
+          </a>
+
+          <a th:href="@{/tasks(status='IN_PROGRESS')}" class="btn btn-warning">
+            Show In Progress
+          </a>
+        </div>
+
+        <!-- Table with task  -->
+          <div class="container mt-4">
+            <div class="d-flex flex-wrap gap-3">
+              <div class="card shadow-sm p-3" style="width: 18rem;" th:each="task : ${tasks}">
+                <div class="card-body d-flex flex-column">
+
+                  <!-- Title -->
+                  <h5 class="card-title mb-2">
+                    <a th:href="@{'/tasks/detail/' + ${task.taskId}}" th:text="${task.title}">Task title</a>
+                  </h5>
+
+                  <!-- Date -->
+                  <p class="mb-1 text-muted">
+                    <strong>Date:</strong>
+                    <span th:text="${#temporals.format(task.dueDate, 'dd.MM.yyyy')}">01.01.2025</span>
+                  </p>
+
+                  <!-- Status compare enum-->
+                  <p class="mb-1">
+                    <strong>Status:</strong>
+                    <span th:text="${task.status}"
+                          th:classappend="${task.status == T(com.trixs.taskmanager.data.entities.TaskStatus).COMPLETED} ? 'badge bg-success'
+                          : (${task.status == T(com.trixs.taskmanager.data.entities.TaskStatus).IN_PROGRESS} ? 'badge bg-warning text-dark'
+                          : 'badge bg-secondary')">
+                      Status
+                    </span>
+                  </p>
+
+                  <!-- Category -->
+                  <p class="mb-3">
+                    <strong>Category:</strong>
+                    <span th:text="${task.category}">Work</span>
+                  </p>
+
+                  <!-- Actions -->
+                  <div class="mt-auto d-flex gap-2 flex-wrap">
+                    <a class="btn btn-sm btn-warning" th:href="@{/tasks/edit/{id}(id=${task.taskId})}">Edit</a>
+                    <a class="btn btn-sm btn-danger" th:href="@{/tasks/delete/{id}(id=${task.taskId})}">Delete</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <!-- Pagination -->
+        <div class="d-flex justify-content-center mt-4">
+          <ul class="pagination">
+
+            <!-- Previous -->
+            <li class="page-item" th:classappend="${currentPage == 1} ? 'disabled'">
+              <a class="page-link"
+                 th:href="@{'/tasks?pageNo=' + ${currentPage - 1}
+                          + '&sortField=' + ${sortField}
+                          + '&sortDir=' + ${sortDir}
+                          + '&status=' + ${status}}">Previous</a>
+            </li>
+
+            <!-- Page numbers -->
+            <li class="page-item"
+                th:if="${totalPages > 0}"
+                th:each="i : ${#numbers.sequence(1, totalPages)}"
+                th:classappend="${i == currentPage} ? 'active'">
+              <a class="page-link"
+                 th:href="@{'/tasks?pageNo=' + ${i}
+              + '&sortField=' + ${sortField}
+              + '&sortDir=' + ${sortDir}
+              + '&status=' + ${status}}">
+                [[${i}]]
+              </a>
+            </li>
+
+            <!-- Next -->
+            <li class="page-item" th:classappend="${currentPage == totalPages } ? 'disabled'">
+              <a class="page-link"
+                 th:href="@{'/tasks?pageNo=' + ${currentPage + 1}
+                          + '&sortField=' + ${sortField}
+                          + '&sortDir=' + ${sortDir}
+                          + '&status=' + ${status}}">Next</a>
+            </li>
+          </ul>
+        </div>
+
+
+      </section>
+    </div>
+  </div>
+</article>
+
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
 </body>
+
 </html>

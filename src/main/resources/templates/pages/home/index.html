@@ -1,10 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout.html :: head}"></head>
 <body>
-$END$
+<header th:replace="~{fragments/layout.html :: header}"></header>
+
+<article>
+  <div class="container mt-4">
+    <div class="row">
+      <!-- IMAGE -->
+      <div class="col-12 col-md-6 mb-3 mb-md-0">
+        <img th:src="@{/images/task_manager.png}" class="img-fluid rounded w-100" alt="TaskManagerApp">
+      </div>
+
+      <!-- TEXT -->
+      <div class="col-12 col-md-6">
+        <header>
+          <h1>About Me</h1>
+        </header>
+
+        <section>
+          <h2>Welcome to TaskManagerApp</h2>
+
+          <p>
+            Our web application is designed to help you efficiently manage tasks and stay on top of your responsibilities.
+            Whether you need to create new tasks, assign them to users, or track progress, our platform provides the tools
+            you need for organized and productive task management.
+          </p>
+
+          <p>
+            <strong>With a user-friendly interface, you can:</strong><br>
+            - Add and update task details including title, description, due date, and category.<br>
+            - Track task status from In Progress to Completed.<br>
+            - Automatically receive reminders for upcoming deadlines.<br>
+            Start managing your tasks more efficiently today!
+          </p>
+        </section>
+      </div>
+    </div>
+  </div>
+</article>
+
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
 </body>
 </html>

@@ -1,10 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout.html :: head}"></head>
+
 <body>
-$END$
+<header th:replace="~{fragments/layout.html :: header}"></header>
+<!-- Status messages -->
+<div class="py-2 flash-message message-error" th:text="${error}" th:if="${error}"></div>
+
+<article>
+  <div class="container">
+    <div id="centered">
+      <section>
+        <header>
+          <h1>Create new task</h1>
+        </header>
+        <!-- Create task -->
+        <div class="container mt-5">
+          <div class="card shadow-lg">
+
+            <div class="card-body">
+              <form th:action="@{/tasks/create}" th:object="${taskDTO}" method="post">
+
+
+
+                <!-- Title -->
+                <div class="mb-3">
+                  <label for="title" class="form-label">Title name</label>
+                  <input type="text" id="title" th:field="*{title}" class="form-control" placeholder="Zadaj názov" required>
+                  <small class="text-danger" th:errors="*{title}"></small>
+                </div>
+
+                <!-- Description -->
+                <div class="mb-3">
+                  <label for="description" class="form-label">Description</label>
+                  <textarea id="description" th:field="*{description}" class="form-control" placeholder="Description"></textarea>
+                  <small class="text-danger" th:errors="*{description}"></small>
+                </div>
+
+                <!-- Date-->
+                <div class="mb-3">
+                  <label for="dueDate" class="form-label">Completion date</label>
+                  <input type="date" id="dueDate" th:field="*{dueDate}" class="form-control">
+                  <small class="text-danger" th:errors="*{dueDate}"></small>
+                </div>
+
+                <!-- Category -->
+                <div class="mb-3">
+                  <label for="category" class="form-label">Category</label>
+                  <select id="category" th:field="*{category}" class="form-select" required>
+                    <option value="" disabled selected>Category</option>
+                    <option value="WORK">Work</option>
+                    <option value="SCHOOL">School</option>
+                    <option value="DOCTOR">Doctor</option>
+                  </select>
+                </div>
+
+                <!-- Button -->
+                <div class="d-flex justify-content-between">
+                  <a href="/tasks" class="btn btn-secondary">Späť</a>
+                  <button type="submit" class="btn btn-success">Uložiť</button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+
+
+
+
+      </section>
+    </div>
+  </div>
+</article>
+
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
 </body>
+
 </html>
