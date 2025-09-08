@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout.html :: head}"></head>
+
+<body>
+<header th:replace="~{fragments/layout.html :: header}"></header>
+
+<!-- Later we will write here that the email the user is trying to log in with is already in use -->
+<div class="py-2 flash-message message-error" th:text="${error}" th:if="${error}"></div>
+
+<article>
+    <div id="centered">
+        <header>
+            <h1>Registration</h1>
+        </header>
+
+        <section>
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <form th:action="@{/account/register}" th:object="${userDTO}" method="post" class="d-flex flex-column gap-2">
+                        <div class="form-group">
+                            <label for="email">User email</label>
+                            <input id="email" name="email" th:field="*{email}" class="form-control"/>
+                            <small class="text-danger" th:errors="*{email}"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input id="password" name="password" type="password" th:field="*{password}" class="form-control"/>
+                            <small class="text-danger" th:errors="*{password}"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm-password">Password confirmation</label>
+                            <input id="confirm-password" name="password" type="password" th:field="*{confirmPassword}" class="form-control"/>
+                            <small class="text-danger" th:errors="*{confirmPassword}"></small>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="articles-button align-self-start">Register</button>
+                        </div>
+                        <div class="form-group">
+                            <p>
+                                <a th:href="@{/account/login}">Log in</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</article>
+
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
+</body>
+
+</html>

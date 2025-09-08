@@ -1,0 +1,332 @@
+@font-face {
+    font-family: Poppins;
+    src: url(../fonts/Poppins-Regular.ttf);
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url(../fonts/Poppins-ExtraBold.ttf);
+    font-weight: bold;
+}
+
+html {
+    background: #414042;
+}
+
+body {
+    font: 14px "Poppins";
+    background: #F9F9F9;
+    color: #414042;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;  /* Už žiadny padding na body */
+    min-height: 100vh;
+}
+
+/* header ostáva fixed, ako máš */
+body > header {
+    height: 100px;
+    width: 100%;
+    background: #1a5b5c;
+    color: white;
+    display: flex;
+    justify-content: space-evenly;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+}
+
+
+#logo > * {
+	margin: 0 0 0 50px;
+}
+
+#logo h1 {
+    font-weight: normal;
+    font-size: 1.5em;
+    line-height: 1.2em;
+    color: white;
+}
+
+#logo h1 span {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#logo small {
+	text-transform: uppercase;
+	font-size: 0.85em;
+}
+
+nav ul {
+    margin: 0;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+nav ul li {
+    padding: 0 25px;
+    margin: 0 5px;
+    font-size: 1em;
+    line-height: 4.3em;
+}
+
+nav ul a {
+    color: white;
+    padding: 8px 0;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+nav ul a:hover,
+.active a {
+    border-bottom: 2px solid #EF6534;
+}
+
+article {
+    padding-top: 120px;  /* miesto pre fixed header + medzera */
+    width: 80%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 10px;
+    flex-grow: 1;
+}
+
+/* mobile friendly content */
+@media (max-width: 768px) {
+    article {
+        padding-top: 100px; /* trochu menej na mobile, ak chceš */
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+article h1,
+article h2,
+article h3,
+article h4,
+article h5,
+article h6 {
+    padding: 10px 0;
+    color: #1a5b5c;             /* color h1*/
+
+}
+
+article h1 {
+    margin: 0;
+    font-size: 2.3em;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 4px solid #1a5b5c;
+}
+
+article h2 {
+    font-size: 2em;
+}
+
+article header {
+    height: 100px;
+}
+
+article section p {
+    margin-bottom: 1.5em;
+    line-height: 1.8em;
+}
+
+/*   color link
+*/
+article section a {
+    color: #212f3c;
+}
+
+.centering {
+    text-align: center;
+}
+
+#centered {
+    margin: 0 auto;
+    max-width: 960px;
+}
+
+.avatar {
+    float: none;           /* odstráni float */
+    padding-left: 0;       /* ak chceš, môže ostať ak sa hodí na desktop */
+    max-width: 100%;       /* nikdy nepresiahne rodiča */
+    width: 100%;           /* škáluje sa s rodičom */
+    height: auto;          /* zachová pomer strán */
+    display: block;        /* pekne sa zarovná */
+    margin-bottom: 1rem;   /* odsadí od textu */
+}
+
+.cleaner {
+	clear: both;
+}
+
+.references-button {
+    background: #70B73A;
+    color: white;
+    font-size: 0.9em;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 12px 25px;
+    border-radius: 25px;
+
+
+}
+
+.contact-button {
+	background: #EF6534;
+	padding: 10px 20px;
+	border-radius: 20px;
+}
+
+.contact-button:hover,
+.references-button:hover,
+.articles-button:hover {
+    color: white;
+    filter: brightness(115%) contrast(85%);
+    border: 0;
+}
+
+footer {
+	box-sizing: border-box;
+	text-align: center;
+	height: 100px;
+	color: white;
+	background: #414042;
+	padding: 50px 0 0 0;
+
+}
+
+footer a {
+	color: white;
+	text-decoration: none;
+}
+
+.left {
+    float: left;
+}
+
+#skills td {
+    width: 33%;
+    padding: 10px;
+    vertical-align: top;
+    border: 1px solid gray;
+}
+
+#skills {
+    border-collapse: collapse;
+}
+
+#references img {
+    border: 1px solid gray;
+    padding: 6px;
+    box-shadow: 3px 3px 6px #999999;
+    margin-right: 6px;
+}
+
+#references a {
+    text-decoration: none;
+}
+
+#references a:hover {
+    text-decoration: none;
+}
+
+/*
+Bootstrap sets the color of the link on hover to blue.
+With this rule, we override this behavior to always set the current color on hover
+*/
+a:hover {
+    color: currentColor;
+}
+
+.articles-button{
+    background: #00386B;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    margin: 15px 0;
+    border-radius: 20px;
+    border: 0;
+}
+
+#articles li h2 a {
+    text-decoration: none;
+    color: #00386B;
+}
+
+/*
+Flash messages
+*/
+.flash-message {
+    text-align: center;
+    color: white;
+    width: 960px;
+    margin: 0 auto;
+    margin-top: 14px;
+}
+
+.message-success {
+    background: #70b73a;
+}
+
+.message-error {
+    background: #d41400;
+}
+/*
+Bootstrap sets the color of the link on hover to blue.
+With this rule, we override this behavior to always set the current color on hover
+*/
+a:hover {
+    color: currentColor;
+}
+
+.articles-button {
+    background: #00386B;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    margin: 15px 0;
+    border-radius: 20px;
+    border: 0;
+}
+
+#articles li h2 a {
+    text-decoration: none;
+    color: #1a5b5c;
+}
+
+/*
+Flash messages
+*/
+.flash-message {
+    text-align: center;
+    color: white;
+    width: 960px;
+    margin: 0 auto;
+    margin-top: 14px;
+}
+
+.message-success {
+    background: #70b73a;
+}
+
+.message-error {
+    background: #d41400;
+}
+/*
+Menu item color
+*/
+.navbar a {
+  color: #fff !important;
+}

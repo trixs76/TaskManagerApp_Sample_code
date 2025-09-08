@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout.html :: head}"></head>
+
+<body>
+<header th:replace="~{fragments/layout.html :: header}"></header>
+
+<div class="py-2 flash-message message-success" th:text="${success}" th:if="${success}"></div>
+<div class="py-2 flash-message message-error" th:if="${param.error}">Invalid email or password.</div>
+
+<article>
+    <div id="centered">
+        <header>
+            <h1>Login</h1>
+        </header>
+
+        <section>
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <form th:action="@{/account/login}" method="post" class="d-flex flex-column gap-2">
+                        <div class="form-group">
+                            <label for="email">User email</label>
+                            <input id="email" name="email" type="text" class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input id="password" name="password" type="password" class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="articles-button align-self-start">Log in</button>
+                        </div>
+                        <div class="form-group">
+                            <p>
+                                <a th:href="@{/account/register}">Registration</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</article>
+
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
+</body>
+
+</html>
