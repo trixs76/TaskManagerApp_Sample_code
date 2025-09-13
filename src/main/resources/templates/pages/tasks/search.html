@@ -52,6 +52,10 @@
       <p th:if="${tasks.size() == 0}" class="text-muted">No tasks found.</p>
     </div>
   </div>
+  <!-- Button -->
+  <div class="text-center pt-4">
+    <a href="/tasks" class="btn btn-secondary">Back</a>
+  </div>
 </article>
 
 <footer th:replace="~{fragments/layout.html :: footer}"></footer>
