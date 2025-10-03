@@ -23,12 +23,12 @@ public class AccountController {
 
     @GetMapping("login")
     public String renderLogin() {
-        return "/pages/account/login.html";
+        return "pages/account/login.html";
     }
 
     @GetMapping("register")
     public String renderRegister(@ModelAttribute UserDTO userDTO) {
-        return "/pages/account/register";
+        return "pages/account/register";
     }
 
     @PostMapping("register")
@@ -48,7 +48,7 @@ public class AccountController {
         } catch (PasswordsDoNotEqualException e) {
             result.rejectValue("password", "error", "The passwords do not match.");
             result.rejectValue("confirmPassword", "error", "The passwords do not match.");
-            return "/pages/account/register";
+            return "pages/account/register";
         }
 
         redirectAttributes.addFlashAttribute("success", "User registered.");
