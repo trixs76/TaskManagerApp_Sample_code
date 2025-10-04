@@ -11,10 +11,10 @@ import java.util.Properties;
 @Service
 public class EmailService {
 
-    @Value("${mail.username}")
+    @Value("${spring.mail.username}")
     private String username;
 
-    @Value("${mail.password}")
+    @Value("${spring.mail.password}")
     private String password;            //setup in application.properties
 
     public void sendTaskReminder(String to, String subject, String text) {
@@ -25,7 +25,7 @@ public class EmailService {
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.port", "587");
 
-        // ✅ tu je správny Authenticator
+        // here is right Authenticator
         Session session = Session.getInstance(props, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {

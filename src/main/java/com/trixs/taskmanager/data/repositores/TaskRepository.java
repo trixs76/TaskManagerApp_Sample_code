@@ -11,6 +11,7 @@ import java.util.List;
 
 public interface TaskRepository extends JpaRepository <TaskEntity, Long> {
     List<TaskEntity> findByTitleContainingIgnoreCaseAndDueDate(String title, LocalDate dueDate);
+    List<TaskEntity> findByTitleContainingIgnoreCase(String title);
     List<TaskEntity> findByDueDate(LocalDate dueDate);
     Page<TaskEntity> findByStatus(TaskStatus status, Pageable pageable);
 

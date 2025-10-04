@@ -119,10 +119,12 @@ public class TaskServiceImpl implements TaskService {
     public List<TaskEntity> searchTasks(String title, LocalDate dueDate) {
         if (title != null && dueDate != null) {
             return taskRepository.findByTitleContainingIgnoreCaseAndDueDate(title, dueDate);
+        } else if (title != null && !title.isBlank()) {
+            return taskRepository.findByTitleContainingIgnoreCase(title);
         } else if (dueDate != null) {
             return taskRepository.findByDueDate(dueDate);
         } else {
-            // findAll vracia Iterable -> pre konverziu na List použijeme foreach
+            // findAll return Iterable -> for List use foreach
             List<TaskEntity> result = new ArrayList<>();
             taskRepository.findAll().forEach(result::add);
             return result;

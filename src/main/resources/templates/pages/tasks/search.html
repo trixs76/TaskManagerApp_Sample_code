@@ -12,15 +12,15 @@
     <p></p>
     <!-- Search menu -->
     <form th:action="@{/tasks/search}" method="get" class="row p-2 mt-2 mb-5 bg-white rounded shadow">
-      <div class="col-md-4">
+      <div class="col-md-4 p-1">
         <input type="text" class="form-control" name="title" placeholder="Title"
                th:value="${param.title}">
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 p-1">
         <input type="date" class="form-control" name="dueDate" placeholder="Date"
                th:value="${param.dueDate}">
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 p-1">
         <button type="submit" class="btn btn-primary w-100">Search</button>
       </div>
     </form>
@@ -28,7 +28,7 @@
     <!-- Search results -->
     <div th:if="${tasks != null}">
       <h2 th:if="${tasks.size() > 0}">Results</h2>
-      <ul class="list-group">
+      <ul class="list-group ">
         <li th:each="task : ${tasks}" class="list-group-item">
           <h3 th:text="${task.title}">Title</h3>
           <p>
@@ -54,7 +54,7 @@
   </div>
   <!-- Button -->
   <div class="text-center pt-4">
-    <a href="/tasks" class="btn btn-secondary">Back</a>
+    <a href="/tasks" class="btn btn-sm btn-secondary">Back</a>
   </div>
 </article>
 
