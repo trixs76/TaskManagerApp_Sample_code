@@ -28,9 +28,9 @@ body {
 
 /* header fixed */
 body > header {
-    height: 100px;
+
     width: 100%;
-    background: #263973;  /* color for top menu */
+    background: #020024;
     color: white;
     display: flex;
     justify-content: space-evenly;
@@ -81,6 +81,7 @@ nav ul a {
     padding: 8px 0;
     text-decoration: none;
     text-transform: uppercase;
+    border-bottom: 2px solid transparent;
 }
 
 nav ul a:hover,
@@ -124,7 +125,7 @@ article h1 {
     font-size: 2.3em;
     font-weight: bold;
     text-transform: uppercase;
-    border-bottom: 4px solid #263973;
+    /*border-bottom: 4px solid #263973;*/
 }
 
 article h2 {
