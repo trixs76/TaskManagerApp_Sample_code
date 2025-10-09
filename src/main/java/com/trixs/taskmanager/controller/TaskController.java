@@ -45,7 +45,7 @@ public class TaskController {
             @RequestParam(value = "status", defaultValue = "IN_PROGRESS") TaskStatus status,
             Model model) {
 
-        int pageSize = 3;
+        int pageSize = 3;       //number task on the page
 
         Page<TaskEntity> page = taskService.findPaginatedAndSortedByStatus(pageNo, pageSize, sortField, sortDir, status);
         List<TaskEntity> taskList = page.getContent();
@@ -80,7 +80,7 @@ public class TaskController {
             RedirectAttributes redirectAttributes
     ) {
         if (task.getStatus() == null || task.getStatus().isBlank()) {
-            task.setStatus("IN_PROGRESS"); // defaultný status
+            task.setStatus("IN_PROGRESS"); // default status
         }
 
         if (result.hasErrors()) {
@@ -132,11 +132,9 @@ public class TaskController {
     public String detail(@PathVariable Long taskId, Model model) {
         TaskDTO task = taskService.getById(taskId);
         model.addAttribute("task", task);
-
-
-
         return "pages/tasks/detail";
     }
+
     @GetMapping("/search")
     public String searchTasks(@RequestParam(required = false) String title,
                                 @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dueDate,
