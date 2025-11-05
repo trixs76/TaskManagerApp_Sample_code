@@ -47,6 +47,10 @@ public class TaskController {
 
         int pageSize = 3;       //number task on the page
 
+        if (status == TaskStatus.COMPLETED) {
+            sortDir = "desc";
+        }
+
         Page<TaskEntity> page = taskService.findPaginatedAndSortedByStatus(pageNo, pageSize, sortField, sortDir, status);
         List<TaskEntity> taskList = page.getContent();
 
