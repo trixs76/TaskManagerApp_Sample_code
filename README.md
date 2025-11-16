@@ -11,7 +11,6 @@ Start managing your tasks more efficiently today!
 
 Trixs (Vladimír Krištof) 2025, e-mail: info@trixs.sk
 
-Click and try TaskManagerApp : http://taskmanagerapp-env.eba-s6izugr2.eu-central-1.elasticbeanstalk.com 
 
 Images from app:
 
